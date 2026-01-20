@@ -64,7 +64,7 @@ func (r *Repository) Get(ctx context.Context, id uint, limit int) (*models.Chat,
 
 		return tx.Where("chat_id = ?", id).Order("updated_at DESC").Limit(limit).Find(&chat.Messages).Error
 	}, &sql.TxOptions{
-		Isolation: sql.LevelRepeatableRead, // Предотвращает изменения во время транзакции
+		Isolation: sql.LevelRepeatableRead,
 		ReadOnly:  true,
 	})
 
